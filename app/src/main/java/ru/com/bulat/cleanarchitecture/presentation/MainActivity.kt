@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import ru.com.bulat.cleanarchitecture.R
@@ -11,14 +12,14 @@ import ru.com.bulat.cleanarchitecture.R
 class MainActivity : AppCompatActivity() {
 
 
-    private lateinit var vm : MainViewModel
+    private  val vm : MainViewModel by viewModels { MainViewModelFactory(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         Log.d("AAA", "Activity created")
 
-        vm = ViewModelProvider(this, MainViewModelFactory(this))
-            .get(MainViewModel::class.java)
+//        vm = ViewModelProvider(this, MainViewModelFactory(this))
+//            .get(MainViewModel::class.java)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
