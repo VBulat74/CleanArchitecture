@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import ru.com.bulat.cleanarchitecture.R
+import ru.com.bulat.cleanarchitecture.data.repository.UserRepositoryImpl
 import ru.com.bulat.cleanarchitecture.domain.models.SaveUserNameParam
 import ru.com.bulat.cleanarchitecture.domain.models.UserName
 import ru.com.bulat.cleanarchitecture.domain.usecase.GetUserNameUseCase
@@ -12,8 +13,9 @@ import ru.com.bulat.cleanarchitecture.domain.usecase.SaveUserNameUseCase
 
 class MainActivity : AppCompatActivity() {
 
-    private val getUserNameUseCase = GetUserNameUseCase()
-    private val saveUserNameUseCase = SaveUserNameUseCase()
+    private val userRepository by lazy (LazyThreadSafetyMode.NONE) {UserRepositoryImpl(context = applicationContext)}
+    private val getUserNameUseCase by lazy (LazyThreadSafetyMode.NONE) {GetUserNameUseCase(userRepository = userRepository)}
+    private val saveUserNameUseCase by lazy (LazyThreadSafetyMode.NONE) {SaveUserNameUseCase(userRepository = userRepository)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
