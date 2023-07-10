@@ -4,22 +4,18 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.com.bulat.cleanarchitecture.R
 
 class MainActivity : AppCompatActivity() {
 
 
-    private  val vm : MainViewModel by viewModels { MainViewModelFactory(this) }
+    private  val vm : MainViewModel by viewModel<MainViewModel> ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         Log.d("AAA", "Activity created")
-
-//        vm = ViewModelProvider(this, MainViewModelFactory(this))
-//            .get(MainViewModel::class.java)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
