@@ -4,25 +4,33 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import ru.com.bulat.cleanarchitecture.R
+import ru.com.bulat.cleanarchitecture.app.App
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
 
-    private  val vm : MainViewModel by viewModels { MainViewModelFactory(this) }
+    //private  val vm : MainViewModel by viewModels { MainViewModelFactory(this) }
+
+    @Inject
+    lateinit var vmFactory:MainViewModelFactory
+    private lateinit var vm : MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         Log.d("AAA", "Activity created")
 
-//        vm = ViewModelProvider(this, MainViewModelFactory(this))
-//            .get(MainViewModel::class.java)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        (applicationContext as App).appComponent.inject(this)
+
+        vm = ViewModelProvider(this, vmFactory)
+            .get(MainViewModel::class.java)
+
 
         val dataTextVew = findViewById<TextView>(R.id.dataTextView)
         val dataEditView = findViewById<TextView>(R.id.dataEditView)
