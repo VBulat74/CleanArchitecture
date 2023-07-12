@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    //id 'dagger.hilt.android.plugin'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -38,9 +41,13 @@ dependencies {
     implementation project(path: ":data")
 
     // add View model
-
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
+    implementation 'androidx.fragment:fragment-ktx:1.6.0'
+
+    // add dagger hilt
+    implementation "com.google.dagger:hilt-android:2.46.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.46.1"
     implementation 'androidx.fragment:fragment-ktx:1.6.0'
 
     implementation 'androidx.core:core-ktx:1.10.1'

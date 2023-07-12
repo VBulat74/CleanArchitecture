@@ -4,12 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.com.bulat.cleanarchitecture.domain.models.SaveUserNameParam
 import ru.com.bulat.cleanarchitecture.domain.models.UserName
 import ru.com.bulat.cleanarchitecture.domain.usecase.GetUserNameUseCase
 import ru.com.bulat.cleanarchitecture.domain.usecase.SaveUserNameUseCase
+import javax.inject.Inject
 
-class MainViewModel (
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val getUserNameUseCase : GetUserNameUseCase,
     private val saveUserNameUseCase : SaveUserNameUseCase
 ) :ViewModel() {

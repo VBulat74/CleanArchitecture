@@ -6,20 +6,18 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import ru.com.bulat.cleanarchitecture.R
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 
-    private  val vm : MainViewModel by viewModels { MainViewModelFactory(this) }
+    private  val vm : MainViewModel by viewModels ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         Log.d("AAA", "Activity created")
-
-//        vm = ViewModelProvider(this, MainViewModelFactory(this))
-//            .get(MainViewModel::class.java)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
