@@ -26,19 +26,19 @@ class MainActivity : AppCompatActivity() {
         val sendButton = findViewById<Button>(R.id.sendButton)
         val receiveButton = findViewById<Button>(R.id.receiveButton)
 
-        vm.resultLive.observe(this) { text ->
-            dataTextVew.text = text
+        vm.stateLive.observe(this) { state ->
+            dataTextVew.text = "${state.firsName} ${state.lastName} ${state.saveResult}"
         }
 
         sendButton.setOnClickListener {
             // Клик по кнопке Save data
             val text = dataEditView.text.toString()
-            vm.save(text)
+            vm.send(event = SaveEvent(text = text))
         }
 
         receiveButton.setOnClickListener {
             // Клик по кнопке Get data
-            vm.load()
+            vm.send(event = LoadEvent())
         }
     }
 }
